@@ -1,0 +1,576 @@
+
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zoom Tech - Home</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/site.js" defer></script>
+</head><body>
+<header>
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 15px;">
+    <!-- 🔹 Logo + Brand -->
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets/images/zoom.png" alt="Zoom Tech Logo" class="brand-logo" style="height:50px;">
+        </a>
+      </div>
+      <div class="brand" style="font-size:22px;font-weight:bold;">ZOOM TECH</div>
+    </div>
+
+    <!-- 🔹 Navigation Links -->
+    <nav style="display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="index.html">Home</a>
+      <a href="mdm.html">MDM Files</a>
+      <a href="courses.html">Courses</a>
+      <a href="tools.html">Tools Activation</a>
+      <a href="bypass.html">Bypass Scripts</a>
+      <a href="services.html">Other Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- 🔹 Search + Cart -->
+    <div class="header-right" style="display:flex;align-items:center;gap:8px;">
+      <form onsubmit="return handleSearch(event)" style="display:flex;align-items:center;">
+        <input id="searchInput" class="search-input" placeholder="Search products, blogs, or files..."
+               oninput="filterContent()" 
+               style="padding:5px 10px;border:1px solid #ccc;border-radius:6px;">
+        <button type="submit" 
+                style="background:#007bff;color:white;border:none;padding:6px 10px;border-radius:6px;margin-left:5px;cursor:pointer;">
+          🔍
+        </button>
+      </form>
+
+      <button class="cart-btn" onclick="toggleCart()" 
+              style="background:#007bff;color:#fff;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;">
+        🛒 Cart <span id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+  </div>
+</header>
+<!-- ✅ Notification -->
+<div id="cartNotification" class="cart-notification"></div>
+
+<!-- 🛒 Cart Modal -->
+<div id="cartModal" class="cart-modal">
+  <div class="cart-content">
+    <h3>Your Cart</h3>
+
+    <table id="cartTable">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="cartItems"></tbody>
+    </table>
+
+    <p><strong>Grand Total:</strong> $<span id="cartTotal">0</span></p>
+
+    <!-- 🧾 Payment Option -->
+    <div class="payment-section">
+      <label><input type="radio" name="payment" value="M-Pesa" checked> M-Pesa</label>
+      <label><input type="radio" name="payment" value="Binance"> Binance</label>
+    </div>
+
+    <button class="checkout-btn" onclick="checkoutWhatsApp()">Checkout</button>
+    <button onclick="closeCart()">Close</button>
+  </div>
+</div>
+
+
+<section class="container">
+  <div class="section-title">Latest Downloads</div>
+  <div class="grid">
+    
+    <!-- 🔹 Download Card 1 -->
+    <div class="card download-card">
+      <h4>DOWNLOAD PANDORA V9.9</h4>
+      <p class="small">DOWNLOAD LATEST VERSION OF YOUR POWERFULL TOOL HERE </p>
+      <button class="btn" 
+              onclick="window.open('https://mega.nz/file/uF9ghbDI#TsNGlcTMacRXroV-QZe9s37J7230eGkns9DGE5OI48Y')">
+        ⬇ Download
+      </button>
+    </div>
+
+    <!-- 🔹 Download Card 2 -->
+    <div class="card download-card">
+      <h4>F64 ULTRA SUITE V10_22_2025</h4>
+      <p class="small">LATESET SET UP FOR YOUR POWERFUL BOX 2025.</p>
+      <button class="btn" 
+              onclick="window.open('http://flash64.com/public_download/Flash64_V10_22_2025_Password_123456.rar')">
+        ⬇ Download
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- 🌌 HERO SECTION (Animated Background) -->
+<section class="hero">
+  <div class="hero-animation">
+    <canvas id="heroCanvas"></canvas>
+  </div>
+
+  <div class="container hero-content">
+    <h1 class="hero-title">Zoom into the <span>Future of Tech</span>.</h1>
+    <p class="hero-subtitle">
+      Premium MDM files, flashing tools, and advanced software solutions for the modern technician.
+    </p>
+    <div class="hero-buttons">
+      <button class="btn-glass" onclick="location.href='courses.html'">🎓 Explore Courses</button>
+      <button class="btn-glass" onclick="location.href='mdm.html'">📂 Access Files</button>
+    </div>
+  </div>
+</section>
+
+<style>
+/* 🌌 Hero Base */
+.hero {
+  position: relative;
+  height: 85vh;
+  color: white;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(circle at center, #001b3f 0%, #000a1a 100%);
+}
+
+/* 🔮 Animated Canvas Background */
+.hero-animation {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+#heroCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 🔤 Hero Text Styling */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+  animation: fadeInUp 1s ease-in-out;
+}
+.hero-title span {
+  color: #00bfff;
+  text-shadow: 0 0 12px rgba(0,191,255,0.7);
+}
+.hero-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 30px;
+  animation: fadeInUp 1.3s ease-in-out;
+}
+
+/* 💎 Glass Buttons */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  animation: fadeInUp 1.6s ease-in-out;
+}
+.btn-glass {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.btn-glass:hover {
+  background: rgba(0,123,255,0.4);
+  border-color: #00bfff;
+  box-shadow: 0 0 16px rgba(0,191,255,0.5);
+  transform: translateY(-2px);
+}
+
+/* ✨ Fade-in animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .hero-title { font-size: 2.2rem; }
+  .hero-subtitle { font-size: 1rem; }
+}
+</style>
+
+<script>
+/* 🌠 Animated Tech Particle Background */
+const canvas = document.getElementById("heroCanvas");
+const ctx = canvas.getContext("2d");
+
+let particlesArray;
+let w, h;
+function initCanvas() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = document.querySelector(".hero").offsetHeight;
+  particlesArray = [];
+
+  for (let i = 0; i < 80; i++) {
+    particlesArray.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      size: Math.random() * 2 + 1,
+      speedX: (Math.random() - 0.5) * 0.7,
+      speedY: (Math.random() - 0.5) * 0.7
+    });
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, w, h);
+  for (let i = 0; i < particlesArray.length; i++) {
+    let p = particlesArray[i];
+    p.x += p.speedX;
+    p.y += p.speedY;
+
+    if (p.x < 0 || p.x > w) p.speedX *= -1;
+    if (p.y < 0 || p.y > h) p.speedY *= -1;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(0,191,255,0.7)";
+    ctx.fill();
+
+    // connect particles
+    for (let j = i; j < particlesArray.length; j++) {
+      const p2 = particlesArray[j];
+      const dx = p.x - p2.x;
+      const dy = p.y - p2.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = "rgba(0,191,255," + (1 - dist / 120) + ")";
+        ctx.lineWidth = 0.4;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+window.addEventListener("resize", initCanvas);
+initCanvas();
+animate();
+</script>
+
+
+<section class="container">
+  <div class="section-title">Top Offers</div>
+  <div class="grid">
+    <div class="card"><h4>Mobile Software (Beginner → Pro)</h4><p class="small">1–6 weeks • Videos, voice calls, PDFs</p><p class="small">Price: $80</p><button class="btn" onclick="addToCart('Mobile Software Course',80)">Add to Cart</button></div>
+    <div class="card"><h4>ISP Masterclass</h4><p class="small">1–6 weeks • Videos, voice calls, PDFs</p><p class="small">Price: $100</p><button class="btn" onclick="addToCart('ISP Masterclass',100)">Add to Cart</button></div>
+    <div class="card"><h4>Professional Package</h4><p class="small">All ISP tools, case studies, quick support</p><p class="small">Price: $150</p><button class="btn" onclick="addToCart('Professional Package',150)">Add to Cart</button></div>
+    <div class="card"><h4>UMT – 1 year</h4><p class="small">Tool Activation</p><p class="small">Price: 9000 Ksh + tax</p><button class="btn" onclick="addToCart('UMT 1 year',9000)">Add to Cart</button></div>
+  </div>
+</section>
+
+
+<section class="container">
+  <div class="section-title">Latest Blogs</div>
+  <div class="grid">
+    <div class="blog"><h4>How to Fix MDM Locked Devices</h4><p class="small">A technician's walkthrough with tools and tips.</p></div>
+    <div class="blog"><h4>Top Activation Tools Compared</h4><p class="small">Which activations give the best value in 2025.</p></div>
+  </div>
+</section>
+
+<footer class="footer">© 2025 Zoom Tech • Built by Don Carlos · Secure · Fast  <a href="about.html" style="color:#a9dffd">Privacy & Policy</a></footer>
+
+
+
+<!-- ✅ Persistent Cart Script (place here, before </body>) -->
+<script>
+let cart = JSON.parse(localStorage.getItem("zoomCart") || "[]");
+
+// 🛒 Save cart to localStorage
+function saveCart() {
+  localStorage.setItem("zoomCart", JSON.stringify(cart));
+}
+
+// ✅ Load and update UI when page opens
+window.addEventListener("DOMContentLoaded", () => {
+  updateCartCount();
+});
+
+// 🛍️ Add to cart
+function addToCart(name, price) {
+  const existingItem = cart.find(item => item.name === name);
+  if (existingItem) {
+    existingItem.qty++;
+  } else {
+    cart.push({ name, price, qty: 1 });
+  }
+  saveCart();
+  updateCartCount();
+  showNotification(`${name} added to cart`);
+}
+
+// 🔔 Notification popup
+function showNotification(message) {
+  const note = document.getElementById('cartNotification');
+  note.textContent = message;
+  note.style.display = 'block';
+  setTimeout(() => note.style.display = 'none', 2000);
+}
+
+// 🧺 Open/close cart modal
+function toggleCart() {
+  document.getElementById('cartModal').style.display = 'flex';
+  renderCart();
+}
+function closeCart() {
+  document.getElementById('cartModal').style.display = 'none';
+}
+
+// 🖊️ Update cart table
+function renderCart() {
+  const tbody = document.getElementById('cartItems');
+  tbody.innerHTML = '';
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+    tbody.innerHTML += `
+      <tr>
+        <td>${item.name}</td>
+        <td><input type="number" min="1" value="${item.qty}" onchange="updateQty(${index}, this.value)"></td>
+        <td>$${item.price}</td>
+        <td>$${itemTotal.toFixed(2)}</td>
+        <td><button onclick="removeItem(${index})">🗑️</button></td>
+      </tr>
+    `;
+  });
+
+  document.getElementById('cartTotal').textContent = total.toFixed(2);
+  saveCart();
+}
+
+// 🔁 Update quantity
+function updateQty(index, newQty) {
+  cart[index].qty = parseInt(newQty);
+  if (cart[index].qty <= 0) cart.splice(index, 1);
+  renderCart();
+  updateCartCount();
+}
+
+// ❌ Remove item
+function removeItem(index) {
+  cart.splice(index, 1);
+  renderCart();
+  updateCartCount();
+}
+
+// 🔢 Update cart counter
+function updateCartCount() {
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById('cartCount').textContent = count;
+}
+
+// ✅ Checkout via WhatsApp
+function checkoutWhatsApp() {
+  if (cart.length === 0) {
+    showNotification("Your cart is empty!");
+    return;
+  }
+
+  const paymentOption = document.querySelector('input[name="payment"]:checked')?.value || "M-Pesa";
+  let total = 0;
+  let message = `🛒 *Zoom Tech Order Summary*\n\n`;
+
+  cart.forEach((item, i) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+    message += `${i + 1}. ${item.name} — ${item.qty} x $${item.price} = $${itemTotal}\n`;
+  });
+
+  message += `\n💰 *Total:* $${total.toFixed(2)}\n💳 *Payment:* ${paymentOption}\n\nPlease confirm your order.`;
+  const phoneNumber = "254795540536";
+  const encodedMessage = encodeURIComponent(message);
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+}
+</script>
+
+
+<script>
+function checkoutWhatsApp() {
+  if (cart.length === 0) {
+    showNotification("Your cart is empty!");
+    return;
+  }
+
+  const paymentOption = document.querySelector('input[name="payment"]:checked').value;
+  let total = 0;
+  let message = `🛒 *Zoom Tech Order Summary*\n\n`;
+
+  cart.forEach((item, i) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+    message += `${i + 1}. ${item.name} — ${item.qty} x $${item.price} = $${itemTotal}\n`;
+  });
+
+  message += `\n💰 *Total:* $${total.toFixed(2)}\n`;
+  message += `💳 *Payment Option:* ${paymentOption}\n`;
+  message += `\nPlease confirm its availability and send your payment details.`;
+
+  // Replace this number with your WhatsApp business number (with country code)
+  const phoneNumber = "254795540536"; // Example: 254712345678
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+  window.open(whatsappURL, "_blank");
+}
+</script>
+
+<script>
+/* 🧠 Zoom Tech Smart Search System */
+const PAGE_KEY = window.location.pathname.split("/").pop(); // e.g. index.html
+
+// --- 1️⃣ Register items found on this page ---
+function registerPageItems() {
+  const items = [];
+
+  // Collect product cards
+  document.querySelectorAll(".card").forEach(card => {
+    items.push({
+      title: card.querySelector("h4")?.innerText || "Untitled",
+      desc: card.querySelector("p.small")?.innerText || "",
+      page: PAGE_KEY,
+      type: "product"
+    });
+  });
+
+  // Collect blogs
+  document.querySelectorAll(".blog").forEach(blog => {
+    items.push({
+      title: blog.querySelector("h4")?.innerText || "Untitled",
+      desc: blog.querySelector("p.small")?.innerText || "",
+      page: PAGE_KEY,
+      type: "blog"
+    });
+  });
+
+  // Collect any file cards on mdm.html
+  document.querySelectorAll(".mdm-file").forEach(file => {
+    items.push({
+      title: file.querySelector("h4")?.innerText || "File",
+      desc: file.querySelector("p.small")?.innerText || "",
+      page: PAGE_KEY,
+      type: "file"
+    });
+  });
+
+  // Save in localStorage
+  let allData = JSON.parse(localStorage.getItem("zoomTechItems") || "[]");
+  allData = allData.filter(item => item.page !== PAGE_KEY); // remove old data for this page
+  allData.push(...items);
+  localStorage.setItem("zoomTechItems", JSON.stringify(allData));
+}
+
+window.addEventListener("DOMContentLoaded", registerPageItems);
+
+// --- 2️⃣ Handle live searching ---
+function handleSearch(event) {
+  event.preventDefault();
+  filterContent();
+  return false;
+}
+
+function filterContent() {
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
+  if (query === "") {
+    showAllLocalItems();
+    return;
+  }
+
+  const allData = JSON.parse(localStorage.getItem("zoomTechItems") || "[]");
+  const results = allData.filter(
+    item =>
+      item.title.toLowerCase().includes(query) ||
+      item.desc.toLowerCase().includes(query)
+  );
+
+  showSearchResults(results, query);
+}
+
+function showSearchResults(results, query) {
+  const container = document.querySelector(".container") || document.body;
+  let resultsBox = document.getElementById("searchResults");
+
+  if (!resultsBox) {
+    resultsBox = document.createElement("div");
+    resultsBox.id = "searchResults";
+    resultsBox.style.margin = "20px 0";
+    resultsBox.style.padding = "15px";
+    resultsBox.style.background = "#f8f9fa";
+    resultsBox.style.borderRadius = "10px";
+    container.prepend(resultsBox);
+  }
+
+  if (results.length === 0) {
+    resultsBox.innerHTML = `<p>No results found for "<b>${query}</b>"</p>`;
+    return;
+  }
+
+  resultsBox.innerHTML = `
+    <h3>🔍 Search Results for "<b>${query}</b>":</h3>
+    <ul style="list-style:none;padding:0;">
+      ${results
+        .map(
+          item => `
+        <li style="padding:6px 0;border-bottom:1px solid #ddd;">
+          <a href="${item.page}" style="text-decoration:none;color:#007bff;font-weight:bold;">
+            ${item.title}
+          </a>
+          <p style="margin:4px 0 0 0;font-size:13px;color:#555;">${item.desc}</p>
+          <span style="font-size:12px;color:#999;">(${item.type} – ${item.page.replace('.html','')})</span>
+        </li>`
+        )
+        .join("")}
+    </ul>
+  `;
+}
+
+function showAllLocalItems() {
+  const allData = JSON.parse(localStorage.getItem("zoomTechItems") || "[]");
+  if (allData.length === 0) return;
+  showSearchResults(allData, "");
+}
+</script>
+
+
+</body></html>
+
