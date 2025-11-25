@@ -1,0 +1,579 @@
+I WANT THE BLOG POST HERE TO BE A CLICKABLE ON CLICK IT OPENS A FORM INSTEAD OF A LONG SHEET   THIS IS MY CODE <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact - Zoom Tech</title><link rel="stylesheet" href="assets/css/style.css"><script src="assets/js/site.js" defer></script></head><body>
+<header>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7056089363471038"
+     crossorigin="anonymous"></script>
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 15px;">
+    <!-- 🔹 Logo + Brand -->
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="logo">
+        <a href="index.html">
+          <img src="https://i.postimg.cc/8PZXqPyJ/ZOOM.png" alt="Zoom Tech Logo" class="brand-logo" style="height:50px;">
+        </a>
+      </div>
+      <div class="brand" style="font-size:22px;font-weight:bold;">ZOOM TECH</div>
+    </div>
+
+    <!-- 🔹 Navigation Links -->
+    <nav style="display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="index.html">Home</a>
+      <a href="mdm.html">MDM Files</a>
+      <a href="courses.html">Courses</a>
+      <a href="tools.html">Tools Activation</a>
+      <a href="bypass.html">Bypass Scripts</a>
+      <a href="services.html">Other Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- 🔹 Search + Cart -->
+    <div class="header-right" style="display:flex;align-items:center;gap:8px;">
+      <form onsubmit="return handleSearch(event)" style="display:flex;align-items:center;">
+        <input id="searchInput" class="search-input" placeholder="Search products, blogs, or files..."
+               oninput="filterContent()" 
+               style="padding:5px 10px;border:1px solid #ccc;border-radius:6px;">
+        <button type="submit" 
+                style="background:#007bff;color:white;border:none;padding:6px 10px;border-radius:6px;margin-left:5px;cursor:pointer;">
+          🔍
+        </button>
+      </form>
+
+      <button class="cart-btn" onclick="toggleCart()" 
+              style="background:#007bff;color:#fff;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;">
+        🛒 Cart <span id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+<!-- ✅ Notification -->
+<div id="cartNotification" class="cart-notification"></div>
+
+<!-- 🛒 Cart Modal -->
+<div id="cartModal" class="cart-modal">
+  <div class="cart-content">
+    <h3>Your Cart</h3>
+
+    <table id="cartTable">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="cartItems"></tbody>
+    </table>
+
+    <p><strong>Grand Total:</strong> $<span id="cartTotal">0</span></p>
+
+    <!-- 🧾 Payment Option -->
+    <div class="payment-section">
+      <label><input type="radio" name="payment" value="M-Pesa" checked> M-Pesa</label>
+      <label><input type="radio" name="payment" value="Binance"> Binance</label>
+    </div>
+
+    <button class="checkout-btn" onclick="checkoutWhatsApp()">Checkout</button>
+    <button onclick="closeCart()">Close</button>
+  </div>
+</div>
+
+
+
+<section class="container"><h2 class="section-title">Contact Us</h2>
+<div class="grid">
+  <div class="card"><h4>Message us on WhatsApp</h4><p class="small">Click to open chat</p><p><a class="btn" href="https://wa.me/254795540536" target="_blank">WhatsApp Us Now </a></p></div>
+  <div class="card"><h4>Watch on YouTube</h4><p class="small">Subscribe for tutorials and tool reviews</p><p><a class="btn" href="https://www.youtube.com/@ZoomTech-254" target="_blank">Visit Our YouTube Channel</a></p></div>
+</div>
+</section>
+
+<section class="container"><h2 class="section-title">Latest Blogs</h2>
+<div class="grid">
+  <div class="card"><h4>How to Fix MDM Locked Devices</h4><p class="small">⚠️ Important Disclaimer
+This guide is for legitimate owners of MDM-locked devices (e.g. company- or school-issued phones you now own).
+ Removing MDM from stolen or illegally obtained devices is illegal.
+ Always confirm you have the rightful ownership or authorization before attempting.
+
+🧩 1. Understanding MDM Lock
+MDM (Mobile Device Management) lets organizations remotely:
+Control settings and apps
+
+
+Restrict use (e.g., disabling camera, Wi-Fi, etc.)
+
+
+Lock or wipe devices remotely
+
+
+Enforce login with organization credentials
+
+
+If you see messages like:
+“This device is managed by your organization”
+ “MDM profile installed”
+ “Contact your IT administrator to remove restrictions”
+Then your phone is MDM-locked.
+
+💻 2. Fixing MDM-Locked Apple (iPhone/iPad)
+Method 1: Contact Original Admin
+If it’s a school or company device, contact the IT department.
+
+
+They can remove the profile from Apple Business Manager (ABM) or Apple School Manager (ASM).
+
+
+Method 2: Remove via Settings (If You Have Access)
+Go to Settings → General → VPN & Device Management
+
+
+Tap the MDM profile name
+
+
+Choose Remove Management
+
+
+Enter the device passcode if prompted
+
+
+⚠️ This only works if “Remove Management” is visible.
+
+Method 3: DFU Restore (Limited Use)
+Connect your iPhone to a computer with iTunes/Finder
+
+
+Enter DFU Mode (press Volume Up → Volume Down → hold Power until black screen)
+
+
+Click Restore iPhone
+
+
+If the device is DEP-enrolled (Device Enrollment Program), MDM will reappear after restore unless it’s removed from ABM.
+
+Method 4: MDM Bypass Tools (For Legitimate Owners)
+You can use reputable bypass tools (for testing or authorized service repair), such as:
+iRemove Tools
+
+
+Tenorshare 4uKey
+
+
+iMyFone LockWiper
+
+
+Mobitrix LockAway
+
+
+These tools can remove the MDM profile temporarily or permanently (depending on device setup).
+⚠️ Always back up your data before using them.
+
+📱 3. Fixing MDM-Locked Android Devices
+The method depends on brand and security patch level.
+Method 1: Factory Reset (if MDM isn’t system-enforced)
+Power off device
+
+
+Boot into Recovery Mode (e.g., hold Volume Up + Power)
+
+
+Select Wipe data/factory reset
+
+
+Reboot device
+
+
+⚠️ If MDM is installed as a device owner app, it will reinstall upon boot unless you remove it via ADB or MDM service.
+
+Method 2: Remove MDM via Developer or ADB Access
+Enable Developer Options → USB Debugging
+
+
+Connect device to PC
+
+
+Open ADB and run:
+
+ adb devices
+adb shell
+dpm remove-active-admin com.companyname.mdm/.DeviceAdminReceiver
+
+Reboot the device
+
+
+Replace the package name with the actual MDM app’s package ID.
+
+Method 3: MDM Bypass Tools (Android)
+Tools used by authorized technicians:
+Technocare MDM Bypass Tool
+
+
+SamFW Tool (for Samsung)
+
+
+MTK Bypass Utility (for MediaTek devices)
+
+
+UnlockTool / EFT Pro / Chimera (for service use)
+
+
+⚠️ These tools require authorization, correct USB drivers, and may void warranty if misused.
+
+Method 4: Flash Stock Firmware
+Reflashing the stock firmware removes all software locks (including MDM) if not linked to enterprise enrollment.
+You can:
+Use Odin (Samsung)
+
+
+SP Flash Tool (MTK devices)
+
+
+Xiaomi Mi Flash / QFIL (Qualcomm devices)
+
+
+Make sure to flash the same or higher version firmware to avoid errors.
+🧰 4. Verification After Fix
+After the process:
+Go to Settings → About / Device Management
+
+
+Ensure no MDM profile or management notice appears
+
+
+Test app installations, Wi-Fi, and system updates
+
+
+
+🔐 5. Prevention Tips
+Avoid buying company-locked or “supervised” devices.
+
+
+Check MDM status before purchase (especially used iPhones or Samsungs).
+Never sign in with work/school accounts on personal phones if you can avoid it.
+
+
+Keep firmware updated to reduce vulnerability.</p></div>
+  <div class="card"><h4>Best Activation Tools 2025</h4><p class="small">
+Best Activation Tools — 2025
+Quick note: many of these tools are intended for authorized technicians and legitimate owners (company IT, schools, repair shops). Always confirm ownership/authorization before using any unlocking/activation tool. Some operations may void warranty or violate local laws/terms of service. (EFT Pro Dongle)
+Top picks for iPhone / iPad (Activation Lock, MDM, iCloud)
+iRemove (iRemove.tools) — Strong iCloud/Activation Lock bypass support across recent iOS releases and many device models; widely used by repair services for activation-lock removal. Good device coverage, paid license/service model. (iRemove.Tools)
+
+
+Tenorshare 4uKey / Tenorshare MDM tools — Popular consumer-facing tools for MDM removal, screen passcode and some activation scenarios. Simple UI; good for non-technical users but check device compatibility. (Tenorshare)
+
+
+iMyFone LockWiper — Well-known for passcode, MDM and some activation/unlock scenarios; user-friendly and commonly recommended for authorized single-device fixes. (MobiKin)
+
+
+Top picks for Android (FRP, MDM, bootloader/service operations)
+EFT Pro (EFT Pro Dongle / EFT Tool) — Very popular with pro technicians for FRP bypass, MDM removal, IMEI/repair tasks across Samsung, Huawei, Xiaomi, and others. Offers dongle/activation licensing and frequent updates. (EFT Pro Dongle)
+
+
+SamFW (Samsung FRP Tools / SamFW Tool) — Focused on Samsung FRP/Knox-related servicing; known for one-click FRP removal on many Samsung models. Widely used in service centers. (MobileRdx)
+
+
+Miracle Box / Miracle Toolsets — Longstanding multi-brand box/tool for flashing and FRP tasks (often used with keys/dongles). Common in shops that service a lot of models. (YouTube)
+
+
+SP Flash Tool / Odin / MiFlash — Not “activation bypass” per se, but reflashing official stock firmware often resolves locked/soft-bricked devices when combined with proper service steps. Use the official flashing tools for brand-specific recovery. (See vendor docs.)
+
+
+Other useful / niche tools
+Z3X, Chimera, UnlockTool, GSM-Base toolkits — brand- or chipset-specific boxes and utilities used in pro shops.
+
+
+Mobitrix / Mobikin type guides / specialist services — sites and services that compile and compare MDM/iCloud tools and workflows. (MobiKin)
+
+
+
+Quick comparison (practical)
+EFT Pro — Best for pro Android servicing across many brands; paid activation; frequent updates. (EFT Pro Dongle)
+
+
+iRemove — Best for many iOS activation-lock cases handled by technicians; service/payment model. (iRemove.Tools)
+
+
+Tenorshare / iMyFone — Best for easier consumer-level fixes (passcodes, some MDM removal) with polished UI. (Tenorshare)
+
+
+
+Practical tips before you use any tool
+Confirm ownership/authorization — don’t attempt on lost/stolen devices.
+
+
+Back up data where possible — many procedures are destructive.
+
+
+Check device model & OS version against the tool’s compatibility list before purchase.
+
+
+Prefer official channels first — contact the original admin/organization or vendor-managed portals (Apple Business/School Manager, Google Zero-Touch).
+
+
+Use paid/official activations or licensed dongles for reliability — free keygens or cracked versions are risky (malware/legal risk). (EFT Pro Dongle)
+
+</p></div>
+</div></section>
+
+<footer class="footer">© 2025 Zoom Tech • Built by Don Carlos · Secure · Fast</footer>
+<script>
+let cart = JSON.parse(localStorage.getItem("zoomCart") || "[]");
+
+// 🛒 Save cart to localStorage
+function saveCart() {
+  localStorage.setItem("zoomCart", JSON.stringify(cart));
+}
+
+// ✅ Load and update UI when page opens
+window.addEventListener("DOMContentLoaded", () => {
+  updateCartCount();
+});
+
+// 🛍️ Add to cart
+function addToCart(name, price) {
+  const existingItem = cart.find(item => item.name === name);
+  if (existingItem) {
+    existingItem.qty++;
+  } else {
+    cart.push({ name, price, qty: 1 });
+  }
+  saveCart();
+  updateCartCount();
+  showNotification(`${name} added to cart`);
+}
+
+// 🔔 Notification popup
+function showNotification(message) {
+  const note = document.getElementById('cartNotification');
+  note.textContent = message;
+  note.style.display = 'block';
+  setTimeout(() => note.style.display = 'none', 2000);
+}
+
+// 🧺 Open/close cart modal
+function toggleCart() {
+  document.getElementById('cartModal').style.display = 'flex';
+  renderCart();
+}
+function closeCart() {
+  document.getElementById('cartModal').style.display = 'none';
+}
+
+// 🖊️ Update cart table
+function renderCart() {
+  const tbody = document.getElementById('cartItems');
+  tbody.innerHTML = '';
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+    tbody.innerHTML += `
+      <tr>
+        <td>${item.name}</td>
+        <td><input type="number" min="1" value="${item.qty}" onchange="updateQty(${index}, this.value)"></td>
+        <td>$${item.price}</td>
+        <td>$${itemTotal.toFixed(2)}</td>
+        <td><button onclick="removeItem(${index})">🗑️</button></td>
+      </tr>
+    `;
+  });
+
+  document.getElementById('cartTotal').textContent = total.toFixed(2);
+  saveCart();
+}
+
+// 🔁 Update quantity
+function updateQty(index, newQty) {
+  cart[index].qty = parseInt(newQty);
+  if (cart[index].qty <= 0) cart.splice(index, 1);
+  renderCart();
+  updateCartCount();
+}
+
+// ❌ Remove item
+function removeItem(index) {
+  cart.splice(index, 1);
+  renderCart();
+  updateCartCount();
+}
+
+// 🔢 Update cart counter
+function updateCartCount() {
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById('cartCount').textContent = count;
+}
+
+// ✅ Checkout via WhatsApp
+function checkoutWhatsApp() {
+  if (cart.length === 0) {
+    showNotification("Your cart is empty!");
+    return;
+  }
+
+  const paymentOption = document.querySelector('input[name="payment"]:checked')?.value || "M-Pesa";
+  let total = 0;
+  let message = `🛒 *Zoom Tech Order Summary*\n\n`;
+
+  cart.forEach((item, i) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+    message += `${i + 1}. ${item.name} — ${item.qty} x $${item.price} = $${itemTotal}\n`;
+  });
+
+  message += `\n💰 *Total:* $${total.toFixed(2)}\n💳 *Payment:* ${paymentOption}\n\nPlease confirm your order.`;
+  const phoneNumber = "254795540536";
+  const encodedMessage = encodeURIComponent(message);
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+}
+</script>
+
+
+<script>
+function checkoutWhatsApp() {
+  if (cart.length === 0) {
+    showNotification("Your cart is empty!");
+    return;
+  }
+
+  const paymentOption = document.querySelector('input[name="payment"]:checked').value;
+  let total = 0;
+  let message = `🛒 *Zoom Tech Order Summary*\n\n`;
+
+  cart.forEach((item, i) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+    message += `${i + 1}. ${item.name} — ${item.qty} x $${item.price} = $${itemTotal}\n`;
+  });
+
+  message += `\n💰 *Total:* $${total.toFixed(2)}\n`;
+  message += `💳 *Payment Option:* ${paymentOption}\n`;
+  message += `\nPlease confirm its availability and send your payment details.`;
+
+  // Replace this number with your WhatsApp business number (with country code)
+  const phoneNumber = "254795540536"; // Example: 254712345678
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+  window.open(whatsappURL, "_blank");
+}
+</script>
+
+<script>
+/* 🧠 Zoom Tech Smart Search System */
+const PAGE_KEY = window.location.pathname.split("/").pop(); // e.g. index.html
+
+// --- 1️⃣ Register items found on this page ---
+function registerPageItems() {
+  const items = [];
+
+  // Collect product cards
+  document.querySelectorAll(".card").forEach(card => {
+    items.push({
+      title: card.querySelector("h4")?.innerText || "Untitled",
+      desc: card.querySelector("p.small")?.innerText || "",
+      page: PAGE_KEY,
+      type: "product"
+    });
+  });
+
+  // Collect blogs
+  document.querySelectorAll(".blog").forEach(blog => {
+    items.push({
+      title: blog.querySelector("h4")?.innerText || "Untitled",
+      desc: blog.querySelector("p.small")?.innerText || "",
+      page: PAGE_KEY,
+      type: "blog"
+    });
+  });
+
+  // Collect any file cards on mdm.html
+  document.querySelectorAll(".mdm-file").forEach(file => {
+    items.push({
+      title: file.querySelector("h4")?.innerText || "File",
+      desc: file.querySelector("p.small")?.innerText || "",
+      page: PAGE_KEY,
+      type: "file"
+    });
+  });
+
+  // Save in localStorage
+  let allData = JSON.parse(localStorage.getItem("zoomTechItems") || "[]");
+  allData = allData.filter(item => item.page !== PAGE_KEY); // remove old data for this page
+  allData.push(...items);
+  localStorage.setItem("zoomTechItems", JSON.stringify(allData));
+}
+
+window.addEventListener("DOMContentLoaded", registerPageItems);
+
+// --- 2️⃣ Handle live searching ---
+function handleSearch(event) {
+  event.preventDefault();
+  filterContent();
+  return false;
+}
+
+function filterContent() {
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
+  if (query === "") {
+    showAllLocalItems();
+    return;
+  }
+
+  const allData = JSON.parse(localStorage.getItem("zoomTechItems") || "[]");
+  const results = allData.filter(
+    item =>
+      item.title.toLowerCase().includes(query) ||
+      item.desc.toLowerCase().includes(query)
+  );
+
+  showSearchResults(results, query);
+}
+
+function showSearchResults(results, query) {
+  const container = document.querySelector(".container") || document.body;
+  let resultsBox = document.getElementById("searchResults");
+
+  if (!resultsBox) {
+    resultsBox = document.createElement("div");
+    resultsBox.id = "searchResults";
+    resultsBox.style.margin = "20px 0";
+    resultsBox.style.padding = "15px";
+    resultsBox.style.background = "#f8f9fa";
+    resultsBox.style.borderRadius = "10px";
+    container.prepend(resultsBox);
+  }
+
+  if (results.length === 0) {
+    resultsBox.innerHTML = `<p>No results found for "<b>${query}</b>"</p>`;
+    return;
+  }
+
+  resultsBox.innerHTML = `
+    <h3>🔍 Search Results for "<b>${query}</b>":</h3>
+    <ul style="list-style:none;padding:0;">
+      ${results
+        .map(
+          item => `
+        <li style="padding:6px 0;border-bottom:1px solid #ddd;">
+          <a href="${item.page}" style="text-decoration:none;color:#007bff;font-weight:bold;">
+            ${item.title}
+          </a>
+          <p style="margin:4px 0 0 0;font-size:13px;color:#555;">${item.desc}</p>
+          <span style="font-size:12px;color:#999;">(${item.type} – ${item.page.replace('.html','')})</span>
+        </li>`
+        )
+        .join("")}
+    </ul>
+  `;
+}
+
+function showAllLocalItems() {
+  const allData = JSON.parse(localStorage.getItem("zoomTechItems") || "[]");
+  if (allData.length === 0) return;
+  showSearchResults(allData, "");
+}
+</script>
+
+
+</body></html>
+

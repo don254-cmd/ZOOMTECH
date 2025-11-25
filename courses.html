@@ -1,0 +1,359 @@
+
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Courses - Zoom Tech</title><link rel="stylesheet" href="assets/css/style.css"><script src="assets/js/site.js" defer></script></head><body>
+<header>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7056089363471038"
+     crossorigin="anonymous"></script>
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 15px;">
+    <!-- 🔹 Logo + Brand -->
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="logo">
+        <a href="index.html">
+          <img src="https://i.postimg.cc/8PZXqPyJ/ZOOM.png" alt="Zoom Tech Logo" class="brand-logo" style="height:50px;">
+        </a>
+      </div>
+      <div class="brand" style="font-size:22px;font-weight:bold;">ZOOM TECH</div>
+    </div>
+
+    <!-- 🔹 Navigation Links -->
+    <nav style="display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="index.html">Home</a>
+      <a href="mdm.html">MDM Files</a>
+      <a href="courses.html">Courses</a>
+      <a href="tools.html">Tools Activation</a>
+      <a href="bypass.html">Bypass Scripts</a>
+      <a href="services.html">Other Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- 🔹 Search + Cart -->
+    <div class="header-right" style="display:flex;align-items:center;gap:8px;">
+      <form onsubmit="return handleSearch(event)" style="display:flex;align-items:center;">
+        <input id="searchInput" class="search-input" placeholder="Search products, blogs, or files..."
+               oninput="filterContent()" 
+               style="padding:5px 10px;border:1px solid #ccc;border-radius:6px;">
+        <button type="submit" 
+                style="background:#007bff;color:white;border:none;padding:6px 10px;border-radius:6px;margin-left:5px;cursor:pointer;">
+          🔍
+        </button>
+      </form>
+
+      <button class="cart-btn" onclick="toggleCart()" 
+              style="background:#007bff;color:#fff;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;">
+        🛒 Cart <span id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+<!-- ✅ Notification -->
+<div id="cartNotification" class="cart-notification"></div>
+
+<!-- 🛒 Cart Modal -->
+<div id="cartModal" class="cart-modal">
+  <div class="cart-content">
+    <h3>Your Cart</h3>
+
+    <table id="cartTable">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="cartItems"></tbody>
+    </table>
+
+    <p><strong>Grand Total:</strong> $<span id="cartTotal">0</span></p>
+
+    <!-- 🧾 Payment Option -->
+    <div class="payment-section">
+      <label><input type="radio" name="payment" value="M-Pesa" checked> M-Pesa</label>
+      <label><input type="radio" name="payment" value="Binance"> Binance</label>
+    </div>
+
+    <button class="checkout-btn" onclick="checkoutWhatsApp()">Checkout</button>
+    <button onclick="closeCart()">Close</button>
+  </div>
+</div>
+
+
+
+<section class="container">
+  <h2 class="section-title">Courses</h2>
+  <div class="grid">
+    <div class="card"><h4>1️⃣ Mobile Software (Beginner → Pro)</h4><p class="small">Duration, 1–6 weeks,  Master the full mobile software journey  from flashing and unlocking to repairing and optimizing Android devices. This beginner-friendly course takes you step-by-step from the basics to professional-level techniques used by top mobile technicians.
+Includes:Practical video tutorials,24/7 support team, Downloadable PDF guides</p><p class="small">Price: $80</p><button class="btn" onclick="addToCart('Mobile Software Course',80)">Add to Cart</button></div>
+    <div class="card"><h4>2️⃣ ISP Masterclass</h4><p class="small">Duration, 1–6 weeks, A deep dive into In-System Programming (ISP) techniques for advanced device repair. Learn how to connect directly to a device’s memory, back up firmware, unbrick dead devices, and recover data like a pro. Perfect for technicians ready to level up their skills. Includes, Hands-on video lessons, 
+      Live instructor guidance, Advanced PDF reference materials.</p><p class="small">Price: $100</p><button class="btn" onclick="addToCart('ISP Masterclass',100)">Add to Cart</button></div>
+    <div class="card"><h4>3️⃣ Professional Package</h4><p class="small">Duration, Self-paced, Unlock the full power of Zoom Tech’s resources with this all-in-one bundle. Get all ISP tools remote services, mobile software training, 
+      troubleshooting techniques, and exclusive access to case studies and quick expert support. Ideal for those running or starting a repair business. Includes, All course materials, 
+      Dead boot device repair training & quick support</p><p class="small">Price: $150</p><button class="btn" onclick="addToCart('Professional Package',150)">Add to Cart</button></div>
+  </div>
+</section>
+
+<footer class="footer">© 2025 Zoom Tech • Built by Don Carlos · Secure · Fast <a href="about.html" style="color:#a9dffd">Privacy & Policy</a></footer>
+<script>
+let cart = JSON.parse(localStorage.getItem("zoomCart") || "[]");
+
+// 🛒 Save cart to localStorage
+function saveCart() {
+  localStorage.setItem("zoomCart", JSON.stringify(cart));
+}
+
+// ✅ Load and update UI when page opens
+window.addEventListener("DOMContentLoaded", () => {
+  updateCartCount();
+});
+
+// 🛍️ Add to cart
+function addToCart(name, price) {
+  const existingItem = cart.find(item => item.name === name);
+  if (existingItem) {
+    existingItem.qty++;
+  } else {
+    cart.push({ name, price, qty: 1 });
+  }
+  saveCart();
+  updateCartCount();
+  showNotification(`${name} added to cart`);
+}
+
+// 🔔 Notification popup
+function showNotification(message) {
+  const note = document.getElementById('cartNotification');
+  note.textContent = message;
+  note.style.display = 'block';
+  setTimeout(() => note.style.display = 'none', 2000);
+}
+
+// 🧺 Open/close cart modal
+function toggleCart() {
+  document.getElementById('cartModal').style.display = 'flex';
+  renderCart();
+}
+function closeCart() {
+  document.getElementById('cartModal').style.display = 'none';
+}
+
+// 🖊️ Update cart table
+function renderCart() {
+  const tbody = document.getElementById('cartItems');
+  tbody.innerHTML = '';
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+    tbody.innerHTML += `
+      <tr>
+        <td>${item.name}</td>
+        <td><input type="number" min="1" value="${item.qty}" onchange="updateQty(${index}, this.value)"></td>
+        <td>$${item.price}</td>
+        <td>$${itemTotal.toFixed(2)}</td>
+        <td><button onclick="removeItem(${index})">🗑️</button></td>
+      </tr>
+    `;
+  });
+
+  document.getElementById('cartTotal').textContent = total.toFixed(2);
+  saveCart();
+}
+
+// 🔁 Update quantity
+function updateQty(index, newQty) {
+  cart[index].qty = parseInt(newQty);
+  if (cart[index].qty <= 0) cart.splice(index, 1);
+  renderCart();
+  updateCartCount();
+}
+
+// ❌ Remove item
+function removeItem(index) {
+  cart.splice(index, 1);
+  renderCart();
+  updateCartCount();
+}
+
+// 🔢 Update cart counter
+function updateCartCount() {
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById('cartCount').textContent = count;
+}
+
+// ✅ Checkout via WhatsApp
+function checkoutWhatsApp() {
+  if (cart.length === 0) {
+    showNotification("Your cart is empty!");
+    return;
+  }
+
+  const paymentOption = document.querySelector('input[name="payment"]:checked')?.value || "M-Pesa";
+  let total = 0;
+  let message = `🛒 *Zoom Tech Order Summary*\n\n`;
+
+  cart.forEach((item, i) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+    message += `${i + 1}. ${item.name} — ${item.qty} x $${item.price} = $${itemTotal}\n`;
+  });
+
+  message += `\n💰 *Total:* $${total.toFixed(2)}\n💳 *Payment:* ${paymentOption}\n\nPlease confirm your order.`;
+  const phoneNumber = "254795540536";
+  const encodedMessage = encodeURIComponent(message);
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+}
+</script>
+
+
+<script>
+function checkoutWhatsApp() {
+  if (cart.length === 0) {
+    showNotification("Your cart is empty!");
+    return;
+  }
+
+  const paymentOption = document.querySelector('input[name="payment"]:checked').value;
+  let total = 0;
+  let message = `🛒 *Zoom Tech Order Summary*\n\n`;
+
+  cart.forEach((item, i) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+    message += `${i + 1}. ${item.name} — ${item.qty} x $${item.price} = $${itemTotal}\n`;
+  });
+
+  message += `\n💰 *Total:* $${total.toFixed(2)}\n`;
+  message += `💳 *Payment Option:* ${paymentOption}\n`;
+  message += `\nPlease confirm its availability and send your payment details.`;
+
+  // Replace this number with your WhatsApp business number (with country code)
+  const phoneNumber = "254795540536"; // Example: 254712345678
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+  window.open(whatsappURL, "_blank");
+}
+</script>
+
+<script>
+/* 🧠 Zoom Tech Smart Search System */
+const PAGE_KEY = window.location.pathname.split("/").pop(); // e.g. index.html
+
+// --- 1️⃣ Register items found on this page ---
+function registerPageItems() {
+  const items = [];
+
+  // Collect product cards
+  document.querySelectorAll(".card").forEach(card => {
+    items.push({
+      title: card.querySelector("h4")?.innerText || "Untitled",
+      desc: card.querySelector("p.small")?.innerText || "",
+      page: PAGE_KEY,
+      type: "product"
+    });
+  });
+
+  // Collect blogs
+  document.querySelectorAll(".blog").forEach(blog => {
+    items.push({
+      title: blog.querySelector("h4")?.innerText || "Untitled",
+      desc: blog.querySelector("p.small")?.innerText || "",
+      page: PAGE_KEY,
+      type: "blog"
+    });
+  });
+
+  // Collect any file cards on mdm.html
+  document.querySelectorAll(".mdm-file").forEach(file => {
+    items.push({
+      title: file.querySelector("h4")?.innerText || "File",
+      desc: file.querySelector("p.small")?.innerText || "",
+      page: PAGE_KEY,
+      type: "file"
+    });
+  });
+
+  // Save in localStorage
+  let allData = JSON.parse(localStorage.getItem("zoomTechItems") || "[]");
+  allData = allData.filter(item => item.page !== PAGE_KEY); // remove old data for this page
+  allData.push(...items);
+  localStorage.setItem("zoomTechItems", JSON.stringify(allData));
+}
+
+window.addEventListener("DOMContentLoaded", registerPageItems);
+
+// --- 2️⃣ Handle live searching ---
+function handleSearch(event) {
+  event.preventDefault();
+  filterContent();
+  return false;
+}
+
+function filterContent() {
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
+  if (query === "") {
+    showAllLocalItems();
+    return;
+  }
+
+  const allData = JSON.parse(localStorage.getItem("zoomTechItems") || "[]");
+  const results = allData.filter(
+    item =>
+      item.title.toLowerCase().includes(query) ||
+      item.desc.toLowerCase().includes(query)
+  );
+
+  showSearchResults(results, query);
+}
+
+function showSearchResults(results, query) {
+  const container = document.querySelector(".container") || document.body;
+  let resultsBox = document.getElementById("searchResults");
+
+  if (!resultsBox) {
+    resultsBox = document.createElement("div");
+    resultsBox.id = "searchResults";
+    resultsBox.style.margin = "20px 0";
+    resultsBox.style.padding = "15px";
+    resultsBox.style.background = "#f8f9fa";
+    resultsBox.style.borderRadius = "10px";
+    container.prepend(resultsBox);
+  }
+
+  if (results.length === 0) {
+    resultsBox.innerHTML = `<p>No results found for "<b>${query}</b>"</p>`;
+    return;
+  }
+
+  resultsBox.innerHTML = `
+    <h3>🔍 Search Results for "<b>${query}</b>":</h3>
+    <ul style="list-style:none;padding:0;">
+      ${results
+        .map(
+          item => `
+        <li style="padding:6px 0;border-bottom:1px solid #ddd;">
+          <a href="${item.page}" style="text-decoration:none;color:#007bff;font-weight:bold;">
+            ${item.title}
+          </a>
+          <p style="margin:4px 0 0 0;font-size:13px;color:#555;">${item.desc}</p>
+          <span style="font-size:12px;color:#999;">(${item.type} – ${item.page.replace('.html','')})</span>
+        </li>`
+        )
+        .join("")}
+    </ul>
+  `;
+}
+
+function showAllLocalItems() {
+  const allData = JSON.parse(localStorage.getItem("zoomTechItems") || "[]");
+  if (allData.length === 0) return;
+  showSearchResults(allData, "");
+}
+</script>
+
+
+</body></html>
+

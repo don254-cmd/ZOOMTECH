@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MDM Files - Zoom Tech</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7056089363471038"
+     crossorigin="anonymous"></script>
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 15px;">
+    <!-- 🔹 Logo + Brand -->
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="logo">
+        <a href="index.html">
+          <img src="https://i.postimg.cc/8PZXqPyJ/ZOOM.png" alt="Zoom Tech Logo" class="brand-logo" style="height:50px;">
+        </a>
+      </div>
+      <div class="brand" style="font-size:22px;font-weight:bold;">ZOOM TECH</div>
+    </div>
+
+    <!-- 🔹 Navigation Links -->
+    <nav style="display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="index.html">Home</a>
+      <a href="mdm.html">MDM Files</a>
+      <a href="courses.html">Courses</a>
+      <a href="tools.html">Tools Activation</a>
+      <a href="bypass.html">Bypass Scripts</a>
+      <a href="services.html">Other Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- 🔹 Search + Cart -->
+    <div class="header-right" style="display:flex;align-items:center;gap:8px;">
+      <form onsubmit="return handleSearch(event)" style="display:flex;align-items:center;">
+        <input id="searchInput" class="search-input" placeholder="Search products, blogs, or files..."
+               oninput="filterContent()" 
+               style="padding:5px 10px;border:1px solid #ccc;border-radius:6px;">
+        <button type="submit" 
+                style="background:#007bff;color:white;border:none;padding:6px 10px;border-radius:6px;margin-left:5px;cursor:pointer;">
+          🔍
+        </button>
+      </form>
+
+      <button class="cart-btn" onclick="toggleCart()" 
+              style="background:#007bff;color:#fff;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;">
+        🛒 Cart <span id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- 🛒 Cart Modal -->
+<div id="cartModal" class="cart-modal" style="display:none;">
+  <div class="cart-content">
+    <h3>Your Cart</h3>
+    <table id="cartTable">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="cartItems"></tbody>
+    </table>
+
+    <p><strong>Grand Total:</strong> $<span id="cartTotal">0</span></p>
+
+    <div class="payment-section">
+      <label><input type="radio" name="payment" value="M-Pesa" checked> M-Pesa</label>
+      <label><input type="radio" name="payment" value="Binance"> Binance</label>
+    </div>
+
+    <button class="checkout-btn" onclick="checkoutWhatsApp()">Checkout</button>
+    <button onclick="closeCart()">Close</button>
+  </div>
+</div>
+
+<!-- ✅ Notification -->
+<div id="cartNotification" 
+     style="position:fixed;top:20px;right:20px;background:#00c853;color:#fff;
+     padding:12px 20px;border-radius:8px;display:none;z-index:10000;">
+</div>
+
+<!-- 🔹 MDM FILES SECTION -->
+<section class="container">
+  <h2 class="section-title">MDM Files</h2>
+  <div class="tabs" id="brandTabs">
+    <div class="tab" onclick="showBrand('Itel', this)">Itel</div>
+    <div class="tab" onclick="showBrand('Tecno', this)">Tecno</div>
+    <div class="tab" onclick="showBrand('Samsung', this)">Samsung</div>
+    <div class="tab" onclick="showBrand('Others', this)">Others</div>
+  </div>
+  <div id="brandContent"></div>
+</section>
+
+<footer class="footer">
+  © 2025 Zoom Tech • Built by Don Carlos
+</footer>
+
+<!-- ✅ Persistent Cart Script (place here, before </body>) -->
+<script>
+const BRANDS = {
+  "Itel": [
+    { name: "Itel A70(A665L) V1607 AND BELOW ", price: 10 },
+    { name: "Itel A70(A665L) V1607 AND ABOVE", price: 10 },
+    { name: "Itel A58 ALL SEC PATCH ", price: 10 }
+  ],
+  "Tecno": [
+    { name: "Tecno Spark 10C", price: 10 },
+    { name: "Tecno Camon 20", price: 10 }
+  ],
+  "Samsung": [
+    { name: "Samsung A14 ,BIT (U4) AND BELOW", price: 10.0 },
+    { name: "Samsung A065F ,BIT (U1-U3) VIA USB PERMANENT", price: 13.0 },
+    { name: "Samsung A065F ,BIT (U1-U4) VIA F64 PERMANENT", price: 13.0 },
+    { name: "Samsung A065F ,BIT (U5) VIA F64 PERMANENT", price: 13.0 },
+    { name: "Samsung A065F ,BIT (U6) VIA F64 BYPASS", price: 10.0 },
+    { name: "Samsung A055F U1-U9 (PERMANENT) VIA ISP", price: 10.0 },
+    { name: "Samsung A055F BIT 10  VIA ISP BYPASS", price: 10.0 },
+    { name: "Samsung A047F ALL BIT VIA ISP (F64 BOX) ", price: 15.0 }
+  ],
+  "Others": [
+    { name: "Infinix Hot 40i", price: 10 },
+    { name: "Infinix x6525 ", price: 10.0 }
+  ]
+};
+
+// ===================== 🛒 Persistent Cart System =====================
+let cart = JSON.parse(localStorage.getItem("zoomCart") || "[]");
+
+// Save cart
+function saveCart() { localStorage.setItem("zoomCart", JSON.stringify(cart)); }
+
+// Load cart count
+window.addEventListener("DOMContentLoaded", () => {
+  updateCartCount();
+  showBrand("Itel", document.querySelectorAll(".tab")[0]);
+});
+
+// Add to Cart
+function addToCart(name, price) {
+  const existingItem = cart.find(item => item.name === name);
+  if (existingItem) existingItem.qty++;
+  else cart.push({ name, price, qty: 1 });
+
+  saveCart();
+  updateCartCount();
+  showNotification(`${name} added to cart`);
+}
+
+// Show notification
+function showNotification(message) {
+  const note = document.getElementById('cartNotification');
+  note.textContent = message;
+  note.style.display = 'block';
+  setTimeout(() => note.style.display = 'none', 2000);
+}
+
+// Cart Modal
+function toggleCart() {
+  document.getElementById('cartModal').style.display = 'flex';
+  renderCart();
+}
+function closeCart() {
+  document.getElementById('cartModal').style.display = 'none';
+}
+
+// Render Cart
+function renderCart() {
+  const tbody = document.getElementById('cartItems');
+  tbody.innerHTML = '';
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+    tbody.innerHTML += `
+      <tr>
+        <td>${item.name}</td>
+        <td><input type="number" min="1" value="${item.qty}" onchange="updateQty(${index}, this.value)"></td>
+        <td>$${item.price}</td>
+        <td>$${itemTotal.toFixed(2)}</td>
+        <td><button onclick="removeItem(${index})">🗑️</button></td>
+      </tr>
+    `;
+  });
+
+  document.getElementById('cartTotal').textContent = total.toFixed(2);
+  saveCart();
+}
+
+// Update Qty
+function updateQty(index, newQty) {
+  cart[index].qty = parseInt(newQty);
+  if (cart[index].qty <= 0) cart.splice(index, 1);
+  renderCart();
+  updateCartCount();
+}
+
+// Remove Item
+function removeItem(index) {
+  cart.splice(index, 1);
+  renderCart();
+  updateCartCount();
+}
+
+// Update Cart Count
+function updateCartCount() {
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById('cartCount').textContent = count;
+}
+
+// Checkout
+function checkoutWhatsApp() {
+  if (cart.length === 0) {
+    showNotification("Your cart is empty!");
+    return;
+  }
+
+  const paymentOption = document.querySelector('input[name="payment"]:checked')?.value || "M-Pesa";
+  let total = 0;
+  let message = `🛒 *Zoom Tech Order Summary*\n\n`;
+
+  cart.forEach((item, i) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+    message += `${i + 1}. ${item.name} — ${item.qty} x $${item.price} = $${itemTotal}\n`;
+  });
+
+  message += `\n💰 *Total:* $${total.toFixed(2)}\n💳 *Payment:* ${paymentOption}\n\nPlease confirm your order.`;
+  const phoneNumber = "254795540536";
+  const encodedMessage = encodeURIComponent(message);
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+}
+
+// ===================== 📁 Brand Display =====================
+function showBrand(brand, el) {
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+  el.classList.add("active");
+
+  const content = document.getElementById("brandContent");
+  content.innerHTML = "";
+  const grid = document.createElement("div");
+  grid.className = "grid";
+
+  BRANDS[brand].forEach(item => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <h4>${item.name}</h4>
+      <p>Price: $${item.price}</p>
+      <button class="btn" onclick="addToCart('${item.name}', ${item.price})">Add to Cart</button>
+    `;
+    grid.appendChild(card);
+  });
+  content.appendChild(grid);
+}
+</script>
+
+<!-- 🔍 Smart Search -->
+<script>
+const PAGE_KEY = window.location.pathname.split("/").pop();
+
+function registerPageItems() {
+  const items = [];
+  document.querySelectorAll(".card").forEach(card => {
+    items.push({
+      title: card.querySelector("h4")?.innerText || "Untitled",
+      desc: card.querySelector("p.small")?.innerText || "",
+      page: PAGE_KEY,
+      type: "product"
+    });
+  });
+
+  let allData = JSON.parse(localStorage.getItem("zoomTechItems") || "[]");
+  allData = allData.filter(item => item.page !== PAGE_KEY);
+  allData.push(...items);
+  localStorage.setItem("zoomTechItems", JSON.stringify(allData));
+}
+
+window.addEventListener("DOMContentLoaded", registerPageItems);
+
+function handleSearch(event) {
+  event.preventDefault();
+  filterContent();
+  return false;
+}
+
+function filterContent() {
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
+  const allData = JSON.parse(localStorage.getItem("zoomTechItems") || "[]");
+  const results = allData.filter(item =>
+    item.title.toLowerCase().includes(query) ||
+    item.desc.toLowerCase().includes(query)
+  );
+
+  showSearchResults(results, query);
+}
+
+function showSearchResults(results, query) {
+  const container = document.querySelector(".container") || document.body;
+  let resultsBox = document.getElementById("searchResults");
+  if (!resultsBox) {
+    resultsBox = document.createElement("div");
+    resultsBox.id = "searchResults";
+    resultsBox.style.margin = "20px 0";
+    resultsBox.style.padding = "15px";
+    resultsBox.style.background = "#f8f9fa";
+    resultsBox.style.borderRadius = "10px";
+    container.prepend(resultsBox);
+  }
+
+  if (results.length === 0) {
+    resultsBox.innerHTML = `<p>No results found for "<b>${query}</b>"</p>`;
+    return;
+  }
+
+  resultsBox.innerHTML = `
+    <h3>🔍 Search Results for "<b>${query}</b>":</h3>
+    <ul style="list-style:none;padding:0;">
+      ${results.map(item => `
+        <li style="padding:6px 0;border-bottom:1px solid #ddd;">
+          <a href="${item.page}" style="text-decoration:none;color:#007bff;font-weight:bold;">
+            ${item.title}
+          </a>
+          <p style="margin:4px 0 0 0;font-size:13px;color:#555;">${item.desc}</p>
+          <span style="font-size:12px;color:#999;">(${item.type} – ${item.page.replace('.html','')})</span>
+        </li>`).join("")}
+    </ul>
+  `;
+}
+</script>
+
+</body>
+</html>
